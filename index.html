@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>webpack</title>
+    <script src="https://unpkg.com/lodash@4.16.6"></script>
+    <style type="text/css">
+      .box {
+        float: left;
+        left: 50%;
+        position: relative;
+      }
+      .center {
+        float: left;
+        position: relative;
+        right: 50%;
+      }
+
+      .float-box {
+        display: flex;
+        justify-content: center;
+      }
+      span {
+        float: left;
+        /* width: 200px; */
+      }
+
+      .relative-parent {
+        position: relative;
+      }
+      .absolute-child {
+        position: absolute;
+        width: 200px;
+        /* height: 100px; */
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+      }
+
+      .vertical-inline {
+        height: 100px;
+        line-height: 100px;
+        border: 1px dashed rebeccapurple;
+      }
+
+      .muti-inline-vertical {
+        height: 100px;
+        border: 2px solid royalblue;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .table-muti-inline-vertical {
+        display: table;
+        height: 100px;
+        border: 2px dashed greenyellow;
+      }
+      .table-child {
+        vertical-align: middle;
+        display: table-cell;
+      }
+
+      .relative-margin {
+        position: relative;
+        /* height: 400px; */
+      }
+      .absolute-margin {
+        position: absolute;
+        top: 50%;
+        /* height: 200px;
+        margin-top: -100px; */
+        transform: translateY(-50%);
+      }
+
+      .table-block {
+        display: table-cell;
+        vertical-align: middle;
+        border: 1px solid darkcyan;
+      }
+      .table-block-child {
+
+      }
+
+      .main-margin {
+        width: 300px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="./src/index.js"></script>
+
+    <!-- <div class="box">
+      <div class="center">left-center</div>
+      <div class="center">right-center</div>
+    </div> -->
+
+    <!-- <div class="float-box">
+      <span>float box</span>
+    </div> -->
+
+    <!-- <div class="relative-parent">
+      <div class="absolute-child">absolute-child</div>
+    </div> -->
+
+    <!-- <div class="vertical-inline">
+      <span>vertical-inline</span>
+    </div> -->
+
+    <!-- <div class="muti-inline-vertical">
+      <p>Dance like nobody is watching, code like everybody is.</p>  
+        Dance like nobody is watching, code like everybody is.    
+        <p>Dance like nobody is watching, code like everybody is.</p>
+    </div> -->
+
+    <!-- <div class="table-muti-inline-vertical">
+      <p class="table-child">Dance like nobody is watching, code like everybody is.
+      Dance like nobody is watching, code like everybody is.    
+      Dance like nobody is watching, code like everybody is.</p>
+    </div> -->
+
+    <!-- <div class="relative-margin">
+      <div class="absolute-margin">块级元素垂直居中
+        ①使用absolute+负margin(已知高度宽度)</div>
+    </div> -->
+
+    <!-- <div class="table-block">
+      <div class="table-block-child">table-block1</div>
+      <div class="table-block-child">table-block2</div>
+    </div> -->
+
+    <div class="main-margin">
+      <div>margin: 0 auto;</div>
+    </div>
+  </body>
+</html>

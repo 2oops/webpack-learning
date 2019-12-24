@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>layout</title>
+    <style type="text/css">
+    /* flex */
+    .container {
+      height: 100vh; /* 必须有高度，不写高度则不能垂直居中 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 已知宽高 */
+    /* absolute+负margin 兼容所有*/
+    /* .main1 {
+      position: initial;
+    }
+    .center1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -50px 0 0 -50px;
+    } */
+
+    /* absolute+margin:auto */
+    /*  必须有高度 */
+    /* .main1 {
+      height: 600px; 
+      position: relative;
+    }
+    .center1 {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    } */
+
+    /* absolute+transform 考虑兼容 */
+    /* .main1 {
+      position: initial;
+    }
+    .center1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    } */
+
+    /* 最简单的 flex+margin:auto*/
+    /* 必须有高度 */
+    .main1 {
+      /* display: grid; */
+      height: 600px;
+      display: flex;
+    }
+    .center1 {
+      margin: auto;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="container">
+      <div class="center" style="width: 100px; height: 120px; background-color: #aaa;">center</div>
+    </div> -->
+
+    <div class="main1">
+      <div class="center1" style="width: 100px; height: 100px; background-color: #bbb;">center1</div>
+    </div>
+  </body>
+</html>

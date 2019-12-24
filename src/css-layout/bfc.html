@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BFC</title>
+    <style type="text/css">
+      body {
+
+      }
+      .wrapper {
+        overflow: hidden;
+        /* overflow: auto; */
+      }
+
+      /* 垂直margin重叠 */
+      .child1 {
+        margin-bottom: 100px;
+        border: 1px solid greenyellow;
+      }
+      .child2 {
+        margin-top: 200px;
+        border: 1px dashed plum;
+      }
+
+      .box {
+        height: 100px;
+        width: 100px;
+        background-color: #eee;
+      }
+      .wrap {
+        background-color: plum;
+        /* overflow: hidden; */
+        /* border: 1px solid; */
+        padding: 1px;
+      }
+      .wrap h2 {
+        background-color: pink;
+        margin: 40px;
+      }
+
+      .box1 {
+        width: 100px;
+        height: 100px;
+        float: left;
+        background-color: powderblue;
+      }
+      .box2 {
+        width: 200px;
+        height: 200px;
+        overflow: hidden; /* 使其建立一个BFC,让其内容消除对外界浮动元素的影响 */
+        background-color: sandybrown;
+      }
+
+      /* 浮动布局使得父元素高度塌陷 */
+      .out {
+        background-color: silver;
+        overflow: hidden; /* 把父元素变成一个BFC */
+      }
+      .box3 {
+        width: 100px;
+        height: 100px;
+        float: left;
+        background-color: skyblue;
+      }
+      .box4 {
+        width: 100px;
+        height: 100px;
+        float: left;
+        background-color: teal;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="child1">child1</div>
+    </div>
+    <div class="child2">child2</div>
+
+    <div class="box">box</div>
+    <div class="wrap">
+      <h2>overflow || border || padding</h2>
+    </div>
+
+    <div class="box1">我是一个左浮动的元素</div>
+    <div class="box2">喂喂喂!大家不要生气嘛，生气会犯嗔戒的。悟空你也太调皮了，
+      我跟你说过叫你不要乱扔东西，你怎么又……你看，我还没说完你就把棍子给扔掉了!
+      月光宝盒是宝物，你把它扔掉会污染环境，要是砸到小朋友怎么办，就算砸不到小朋友，
+      砸到花花草草也是不对的。
+    </div>
+
+    <div class="out">
+      <div class="box3">float:left</div>
+      <div class="box4">float:left</div>
+    </div>
+  </body>
+</html>

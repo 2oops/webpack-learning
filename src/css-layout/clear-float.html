@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>clear-float</title>
+    <style type="text/css">
+      /* 浮动特点：脱标，贴边，字围（框中有内容，则围着框排开），收缩 */
+      /* 浮动缺点：带来父容器塌陷 */
+      /* 清除浮动：
+      1. 给父容器设置高度（扩展性不好）（如使用img内容将图片撑开）
+      2. 父容器overflow：hidden
+      3. 
+       */
+      .clear-float {
+        width: 100px;
+        height: 100px;
+        float: left;
+        background-color: greenyellow;
+        border: 1px solid greenyellow;
+      }
+      .clear-float1 {
+        width: 200px;
+        height: 200px;
+        float: left;
+        border: 1px dashed fuchsia;
+      }
+      /* 收缩特性，不需要display: block;即可设置宽度  */
+      .shrink {
+        float: left;
+        background-color: hotpink;
+        width: 200px;
+      }
+
+      .wrap {
+        border: 1px solid palevioletred;
+        /* 给父元素添加以下属性来触发BFC ，最好使用overflow：hidden，但是内容超出会被裁掉*/
+        /* overflow: hidden; */
+        /* overflow: auto; */
+        /* overflow: scroll; */
+        /* float: left; */
+
+        /* position: absolute; */
+        /* position: fixed; */
+
+        /* display: inline-block; */
+        /* display: table-caption; */
+        /* display: table-cell; */
+      }
+      .inner {
+        width: 100px;
+        height: 100px;
+        float: left;
+      }
+
+      /* 推荐使用：伪元素清楚浮动，在元素末尾添加一个不可见的块元素来清理浮动 */
+      .clearfix {
+        margin-top: 10px;
+        border: 1px solid;
+
+        *zoom: 1; /* haslayout开启*/
+      }
+      .clearfix::after {
+        content: '';
+        display: block;
+        clear: both;
+        height: 0;
+        line-height: 0;
+        visibility: hidden; /* 渲染但不显示*/
+      }
+      .clearfix-inner {
+        height: 100px;
+        width: 100px;
+        background-color: peachpuff;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div>
+      <div class="clear-float">float-left</div>
+      <div class="clear-float1">float-left</div>
+      <div class="clear-float1">float-left</div>
+      <div class="shrink">收缩</div>
+    </div> -->
+
+    <div class="wrap">
+      <div class="inner">innerinnerinnerinnerinner</div>
+      <!-- 在父级元素末尾添加块级元素（必须块级）将其撑开 -->
+      <!-- <div style="clear:both"></div> -->
+      <!-- br标签+clear：all -->
+      <br style="clear: all" />
+    </div>
+
+    <!-- <div class="clearfix">
+      <div class="clearfix-inner">clearfix-inner</div>
+    </div> -->
+  </body>
+</html>
