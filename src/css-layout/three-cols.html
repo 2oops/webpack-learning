@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>three cols layout</title>
+    <style type="text/css">
+      /* 圣杯 */
+      /* 容器padding留空间
+        三左浮
+        中宽100%自适应
+        左右负margin三者同行
+        左右相对定位移两边
+        左右负值
+        */
+        /* 利用父容器的两个内边距+从列相对定位*/
+        /* 缺点：中间宽度不能小于左边宽度，一列拉长其他列不会自动填充 */
+      /* .container {
+        padding-left: 220px;
+        padding-right: 220px;
+      }
+      .center {
+        float: left;
+        width: 100%;
+        height: 600px;
+        display: flex;
+      }
+      .center .inner {
+        margin: auto;
+      }
+      .left {
+        float: left;
+        width: 200px;
+        height: 500px;
+        margin-left: -100%;
+        position: relative;
+        left: -220px;
+      }
+      .right {
+        float: left;
+        width: 200px;
+        height: 500px;
+        margin-left: -200px;
+        position: relative;
+        right: -220px;
+      } */
+
+      /* 双飞翼 */
+      /* 解决布局错乱问题，任一栏都可以是最高栏 */
+      /* 三左浮
+        中100%
+        左右margin-left负值三者同行
+        center增设div,并设margin：0 200px;  
+       */
+        .container {
+          min-width: 600px; /* 确保中间有内容 */
+        }
+        .center {
+          float: left;
+          width: 100%;
+          height: 600px;
+          /* display: flex; */
+        }
+        .center .inner {
+          /* margin: auto; */
+          margin: 0 200px;
+        }
+        .left {
+          float: left;
+          width: 200px;
+          height: 500px;
+          margin-left: -100%;
+        }
+        .right {
+          float: left;
+          width: 300px;
+          height: 500px;
+          margin-left: -300px;
+        }
+    </style>
+  </head>
+  <body>
+    <article class="container">
+      <!-- 先写中间dom,优先渲染 -->
+      <div class="center" style="background-color: #aaa;">
+        <div class="inner">shengbei</div>
+      </div>
+      <div class="left" style="background-color: #bbb;"></div>
+      <div class="right" style="background-color: #ccc;"></div>
+    </article>
+  </body>
+</html>

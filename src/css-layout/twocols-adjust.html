@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>two cols adjust</title>
+    <style type="text/css">
+      /* body {
+        overflow: hidden;
+        zoom: 1;
+      }
+      .left {
+        float: left;
+        margin-right: 10px;
+        background-color: #aaa;
+      }
+      .right {
+        overflow: hidden;
+        background-color: #bbb;
+        zoom: 1;
+      } */
+
+      /* .app {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+      } */
+
+      /* 1.float + overflow:hidden */
+      /* .parent {
+        overflow: hidden;
+        zoom: 1;
+      }
+      .left {
+        float: left;
+        margin-right: 20px;
+      }
+      .right {
+        overflow: hidden;
+        zoom: 1;
+      } */
+
+      /* 2.flex */
+      /* .parent {
+        display: flex;
+      }
+      .right {
+        margin-left: 20px;
+        flex: 1;
+      } */
+
+      /* 3.grid */
+      .parent {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="left">left</div>
+    <div class="right">
+      <p>right</p>
+      <p>right</p>
+    </div> -->
+
+    <div id="app">
+      <div class="header"></div>
+      <div class="container">
+        <div class="aside"></div>
+        <div class="main"></div>
+      </div>
+    </div>
+
+    <div class="parent" style="background-color: lightgrey;">
+      <div class="left" style="background-color: lightblue;">
+          <p>left</p>
+      </div>
+      <div class="right"  style="background-color: lightgreen;">
+          <p>right</p>
+          <p>right</p>
+      </div>        
+  </div>
+  </body>
+</html>
