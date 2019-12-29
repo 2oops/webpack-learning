@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>粘连布局</title>
+    <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html,body {
+      height: 100%;
+    }
+    .wrapper {
+      min-height: 100%;
+      background-color: #aaa;;
+      overflow: hidden;
+    }
+    .wrapper .main {
+      padding-bottom: 50px;
+    }
+    .footer {
+      height: 50px;
+      line-height: 50px;
+      background-color: rgb(85, 85, 85);
+      text-align: center;
+      margin-top: -50px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main">
+        当main的内容超过屏幕时，footer跟在内容后面
+        不超过屏幕时，footer在屏幕底部
+      </div>
+    </div>
+    <div class="footer">beianhao</div>
+  </body>
+</html>

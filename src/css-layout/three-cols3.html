@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>三栏布局</title>
+    <style type="text/css">
+      .layout {
+        display: flex;
+      }
+      .left {
+        width: 200px;
+        background-color: #aaa;
+      }
+      .center {
+        flex: 1;
+        min-height: 400px;
+        /* 中间高度被撑开，左右两栏也会拉伸，table布局亦如是 */
+        min-width: 400px;
+        background-color: #bbb;
+      }
+      .right {
+        width: 300px;
+        background-color: #ccc;
+      }
+
+      /* table */
+      .table-layout {
+        display: table;
+        width: 100%;
+      }
+      .table-layout > div {
+        display: table-cell;
+        width: 33%;
+        height: 150px;
+      }
+
+      /* float */
+      .float-layout {
+
+      }
+      .float-left {
+        float: left;
+        width: 300px;
+        height: 300px;
+      }
+      .float-center {
+        height: 400px;
+      }
+      .float-right {
+        float: right;
+        width: 200px;
+        height: 300px;
+      }
+
+      /* absolute */
+      .absolute-layout {
+        height: 200px;;
+      }
+      .absolute-left {
+        left: 0;
+        width: 300px;
+        position: absolute;
+      }
+      .absolute-center {
+        left: 300px;
+        right: 200px;
+        position: absolute;
+      }
+      .absolute-right {
+        right: 0;
+        width: 200px;
+        position: absolute;
+      }
+
+      /* grid */
+      .grid-layout {
+        display: grid;
+        /* width: 100%; */
+        grid-template-columns: 200px auto 300px;
+        grid-template-rows: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>flex</h2>
+    <div class="layout">
+      <div class="left">left</div>
+      <div class="center">center
+        <hr>
+        grid布局存在兼容性问题<br />
+        flex布局最佳<br />
+        若要兼容IE8+可考虑table布局
+      </div>
+      <div class="right">right</div>
+    </div>
+
+    <hr>
+    <h2>table</h2>
+    <div class="table-layout">
+      <div class="table-left" style="background-color: #aaa;">table-cell1</div>
+      <div class="table-center" style="background-color: #bbb;">center</div>
+      <div class="table-right" style="background-color: #ccc;">right</div>
+    </div>
+
+    <hr>
+    <h2>float</h2>
+
+    <div class="float-layout">
+      <div class="float-left" style="background-color: #aaa;">left</div>
+      <div class="float-right" style="background-color: #ccc;">right</div>
+      <div class="float-center" style="background-color: #bbb;">
+        <hr>
+        center要放在最底下，虽兼容性好，但浮动元素脱离元素文档流，
+        要清楚浮动，可能带来父容器高度塌陷的问题</div>
+    </div>
+
+    <hr>
+    <h2>absolute</h2>
+    <div class="absolute-layout">
+      <div class="absolute-left" style="background-color: #aaa;">left</div>
+      <div class="absolute-center" style="background-color: #bbb;">center</div>
+      <div class="absolute-right" style="background-color: #ccc;">right</div>
+    </div>
+
+    <hr>
+    <h2>grid</h2>
+    <div class="grid-layout">
+      <div class="grid-left" style="background-color: #aaa;">left</div>
+      <div class="grid-center" style="background-color: #bbb;">center</div>
+      <div class="grid-right" style="background-color: #ccc;">right</div>
+    </div>
+  </body>
+</html>
