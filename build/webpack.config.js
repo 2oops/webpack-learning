@@ -4,17 +4,25 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const vueLoaderPlugin = require('vue-loader/lib/plugin')
+const Webpack = require('webpack')
+
 let indexCss = new ExtractTextPlugin('index.css')
 
 module.exports = {
   mode: 'development',
   entry: {
-    main: path.resolve( __dirname, '../src/index.js'),
+    main: path.resolve( __dirname, '../src/main.js'),
     layout: path.resolve( __dirname, '../src/layout.js')
   },
   output: {
     filename: '[name].[hash:8].js',
     path: path.resolve( __dirname, '../dist')
+  },
+  devServer: {
+    port: 8080,
+    hot: true,
+    contentBase: '../dist'
   },
   module: {
     rules: [
@@ -42,8 +50,70 @@ module.exports = {
             plugins: [require('autoprefixer')]
           }
         }, "less-loader"]
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10240,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'img/[name].[hash:8].[ext]'
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10240,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'media/[name].[hash:8].[ext]'
+                }
+              }
+            }
+          }
+        ] 
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10240,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'fonts/[name].[hash:8].[ext]'
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.vue$/,
+        use: ['vue-loader']
       }
-    ]
+    ],
+  },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.runtime.esm.js',
+      '@': path.resolve(__dirname, '../src')
+    },
+    extensions: ['*', '.js', '.json', '.vue']
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -57,6 +127,8 @@ module.exports = {
       chunks: ['layout'],
     }),
     new CleanWebpackPlugin(),
-    indexCss
+    indexCss,
+    new vueLoaderPlugin(),
+    new Webpack.HotModuleReplacementPlugin()
   ]
 }

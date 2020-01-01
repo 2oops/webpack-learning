@@ -24,3 +24,13 @@
 
 11. npm i @babel/ployfill -D
     entry: ["@babel/ployfill" path.resolve(__dirname, '../src/index.js')"]
+
+12. npm i vue -S
+
+13. npm i vue-loader vue-template-compiler vue-style-loader -D
+
+14. npm i webpack-dev-server -D
+
+15. "dev": "webpack-dev-server --config build/webpack.config.js --open"
+
+16. 区分开发环境和生产环境
