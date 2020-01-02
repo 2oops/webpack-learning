@@ -34,3 +34,18 @@
 15. "dev": "webpack-dev-server --config build/webpack.config.js --open"
 
 16. 区分开发环境和生产环境
+
+17. 开发环境webpack.dev.js 热更新，不需要代码压缩，开启sourcemap
+    生产环境webpack.prod.js 压缩代码，合理的sourcemap，代码分割，提取css文件
+
+18. 合并配置，优化css
+    npm i webpack-merge optimize-css-assets-webpack-plugin -D
+
+19. 拷贝静态资源
+    npm i copy-webpack-plugin -D
+
+20. 压缩js代码(原则上开启生产模式会自动压缩js代码，但是压缩CSS的时候会破坏原有压缩，故还是
+    引入了该插件进行代码压缩)
+    npm i uglifyjs-webpack-plugin -D
+
+21. 

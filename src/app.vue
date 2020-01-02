@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    well done!
+    well done! 2oops
   </div>
 </template>
 
@@ -16,6 +16,6 @@ export default {
   .container {
     text-align: center;
     font-size: 2em;
-    color: purple;
+    color: pink;
   }
 </style>
