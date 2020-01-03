@@ -6,7 +6,6 @@ const UglifyjsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = WebpackMerge( BaseConfig, {
-  mode: 'production',
   devtool: 'cheap-module-source-map',
   plugins: [
     new CopyWebpackPlugin({

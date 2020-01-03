@@ -1,4 +1,4 @@
-import _ from 'loadsh'
+import _ from 'lodash'
 import Vue from 'vue'
 import App from './app'
 

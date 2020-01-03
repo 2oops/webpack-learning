@@ -48,4 +48,15 @@
     引入了该插件进行代码压缩)
     npm i uglifyjs-webpack-plugin -D
 
-21. 
+21. 打包时间优化
+    webpack4默认mode为production会开启tree shaking去除无用代码
+    缩小文件搜索范围
+    别名alias
+    include&exclude
+    noParse(对于某些依赖库)
+    extensions
+    2578ms
+    noParse: /lodash/ 2328ms => 713ms
+    /\.vue$/ img include exclude => 698ms
+
+22. happypack

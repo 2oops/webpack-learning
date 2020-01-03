@@ -7,6 +7,7 @@ const devMode = process.argv.indexOf('--mode=production') === -1
 console.log(devMode)
 
 module.exports = {
+  mode: devMode ? 'development' : 'production',
   entry: {
     main: path.resolve(__dirname, '../src/main.js')
   },
@@ -16,6 +17,7 @@ module.exports = {
     chunkFilename: 'js/[name].[hash:8].js'
   },
   module: {
+    noParse: /lodash/,
     rules: [
       {
         test: /\.js$/,
@@ -34,7 +36,9 @@ module.exports = {
           options: {
             compilerOptions: {
               preserveWhitespace: false
-            }
+            },
+            include: [path.resolve(__dirname, 'src')],
+            exclude: /node_modules/
           }
         }]
       },
@@ -44,7 +48,7 @@ module.exports = {
           {
             loader: devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
             options: {
-              publicPath: '../dist/css',
+              publicPath: '../dist/css/',
               hmr: devMode
             }
           }, 'css-loader', {
@@ -61,7 +65,7 @@ module.exports = {
           {
             loader: devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
             options: {
-              publicPath: '../dist/css',
+              publicPath: '../dist/css/',
               hmr: devMode
             }
           }, 'css-loader', 'less-loader', {
@@ -83,7 +87,9 @@ module.exports = {
               options: {
                 name: 'img/[name].[hash:8].[ext]'
               }
-            }
+            },
+            include: [path.resolve(__dirname, 'src/assets/img')],
+            exclude: /node_modules/
           }
         }
       },
@@ -122,7 +128,10 @@ module.exports = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.runtime.esm.js',
-      '@': path.resolve(__dirname, '../src')
+      '@': path.resolve(__dirname, '../src'),
+      'assets': path.resolve(__dirname, 'src/assets'),
+      'components': path.resolve(__dirname, 'src/components'),
+      'modules': path.resolve(__dirname, 'src/modules'),
     },
     extensions: ['*', '.js', '.json', '.vue']
   },
