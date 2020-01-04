@@ -59,4 +59,6 @@
     noParse: /lodash/ 2328ms => 713ms
     /\.vue$/ img include exclude => 698ms
 
-22. happypack
+22. happypack 开启多进程loader转换
+
+23. npm i -D webpack-parallel-uglify-plugin增强代码压缩

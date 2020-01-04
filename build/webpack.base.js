@@ -6,6 +6,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const devMode = process.argv.indexOf('--mode=production') === -1
 console.log(devMode)
 
+const Happypack = require('happypack')
+const os = require('os')
+const happyThreadPool = Happypack.ThreadPool({ size: os.cpus().length})
+
+
+
 module.exports = {
   mode: devMode ? 'development' : 'production',
   entry: {
@@ -21,12 +27,15 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        },
+        // use: {
+        //   loader: 'babel-loader',
+        //   options: {
+        //     presets: ['@babel/preset-env']
+        //   }
+        // },
+        use: [{
+          loader: 'happypack/loader?id=happyBabel'
+        }],
         exclude: /node_modules/
       },
       {
@@ -144,6 +153,19 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[hash:8].css',
       chunkFilename: devMode ? '[id].css' : '[id].[hash:8].css'
+    }),
+    new Happypack({
+      id: 'happyBabel',
+      loaders: [
+        {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            cacheDirectory: true
+          }
+        }
+      ],
+      threadPool: happyThreadPool // 共享进程池
     })
   ]
 }

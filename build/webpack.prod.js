@@ -4,6 +4,7 @@ const WebpackMerge = require('webpack-merge')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyjsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const WebpackParallelUglifyPlugin = require('')
 
 module.exports = WebpackMerge( BaseConfig, {
   devtool: 'cheap-module-source-map',
@@ -15,10 +16,24 @@ module.exports = WebpackMerge( BaseConfig, {
   ],
   optimization: {
     minimizer: [
-      new UglifyjsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
+      // new UglifyjsPlugin({
+      //   cache: true,
+      //   parallel: true,
+      //   sourceMap: true
+      // }),
+      new WebpackParallelUglifyPlugin({
+        cacheDir: '.cache/',
+        uglifyJS: {
+          output: {
+            comments: false,
+            beautify: false,
+          },
+          compress: {
+            drop_console: true,
+            collapse_vars: true,
+            reduce_vars: true
+          }
+        }
       }),
       new OptimizeCssAssetsPlugin({})
     ],
