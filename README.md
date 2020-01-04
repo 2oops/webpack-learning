@@ -62,3 +62,6 @@
 22. happypack 开启多进程loader转换
 
 23. npm i -D webpack-parallel-uglify-plugin增强代码压缩
+    ==> 939ms
+
+24. wepack.DllPlugin()  DllReferencePlugin

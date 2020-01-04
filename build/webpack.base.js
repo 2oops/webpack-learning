@@ -10,7 +10,8 @@ const Happypack = require('happypack')
 const os = require('os')
 const happyThreadPool = Happypack.ThreadPool({ size: os.cpus().length})
 
-
+const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: devMode ? 'development' : 'production',
@@ -166,6 +167,13 @@ module.exports = {
         }
       ],
       threadPool: happyThreadPool // 共享进程池
-    })
+    }),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./vendor-manifest.json')
+    }),
+    new CopyWebpackPlugin([
+      { from: 'static', to: 'static'}
+    ])
   ]
 }

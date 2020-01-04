@@ -8,7 +8,8 @@
     "dev": "webpack-dev-server --config build/webpack.config.js --open",
     "build": "webpack --config build/webpack.config.js",
     "dev-up": "webpack-dev-server --config build/webpack.base.js --open",
-    "build-up": "webpack --mode=production --config build/webpack.base.js"
+    "build-up": "webpack --config build/webpack.base.js",
+    "dll": "webpack --config build/webpack.dll.config.js"
   },
   "keywords": [],
   "author": "",
