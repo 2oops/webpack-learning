@@ -6,12 +6,18 @@ const UglifyjsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const WebpackParallelUglifyPlugin = require('')
 
+const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
 module.exports = WebpackMerge( BaseConfig, {
   devtool: 'cheap-module-source-map',
   plugins: [
     new CopyWebpackPlugin({
       from: path.resolve(__dirname, '../public'),
       to: path.resolve(__dirname, '../dist')
+    }),
+    new WebpackBundleAnalyzer({
+      analyzerHost: '127.0.0.1',
+      analyzerPort: 8899
     })
   ],
   optimization: {

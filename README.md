@@ -65,3 +65,13 @@
     ==> 939ms
 
 24. wepack.DllPlugin()  DllReferencePlugin
+
+25. 配置缓存
+
+26. webpack-bundle-analyzer分析打包文件
+
+27. externals
+    让静态资源用CDN的方式使用，而不经过打包
+
+28. tree shaking必须是ES6模块才生效，使用babel转换之后的即是CommonJs模块，因此会失效
+    添加.babelrc 或者使用 modules: false可解决

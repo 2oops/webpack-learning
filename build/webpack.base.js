@@ -170,10 +170,10 @@ module.exports = {
     }),
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('./vendor-manifest.json')
+      manifest: require('../static/vendor-manifest.json')
     }),
     new CopyWebpackPlugin([
       { from: 'static', to: 'static'}
-    ])
+    ]),
   ]
 }

@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     well done! 2oops
+    <router-view></router-view>
   </div>
 </template>
 

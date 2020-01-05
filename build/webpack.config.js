@@ -12,7 +12,7 @@ let indexCss = new ExtractTextPlugin('index.css')
 module.exports = {
   mode: 'development',
   entry: {
-    main: path.resolve( __dirname, '../src/main.js'),
+    // main: path.resolve( __dirname, '../src/main.js'),
     layout: path.resolve( __dirname, '../src/layout.js')
   },
   output: {
@@ -116,11 +116,11 @@ module.exports = {
     extensions: ['*', '.js', '.json', '.vue']
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "../public/index.html"),
-      filename: 'index.html',
-      chunks: ['main'],
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: path.resolve(__dirname, "../public/index.html"),
+    //   filename: 'index.html',
+    //   chunks: ['main'],
+    // }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../public/layout.html'),
       filename: 'layout.html',
