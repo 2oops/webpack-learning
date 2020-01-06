@@ -9,6 +9,8 @@ const Webpack = require('webpack')
 
 let indexCss = new ExtractTextPlugin('index.css')
 
+const firstPlugin = require('./webpack-firstPlugin')
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -116,6 +118,7 @@ module.exports = {
     extensions: ['*', '.js', '.json', '.vue']
   },
   plugins: [
+    new firstPlugin(),
     // new HtmlWebpackPlugin({
     //   template: path.resolve(__dirname, "../public/index.html"),
     //   filename: 'index.html',
