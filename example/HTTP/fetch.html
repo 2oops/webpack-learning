@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <div class="container">
+    <h1>Fetch Api sandbox</h1>
+    <button id="button1">请求本地文本数据</button>
+    <button id="button2">请求本地json数据</button>
+    <button id="button3">请求网络接口</button>
+    <br><br>
+    <div id="output"></div>
+  </div>
+
+  <script type="text/javascript">
+    // 1.fetch请求本地文本数据
+    document.getElementById('button1').addEventListener('click',getText);
+    function getText(){
+      fetch("./test.txt")
+        .then((res) => res.text()) //注意：此处是res.text()
+        .then(data => {
+          console.log(data);
+          document.getElementById('output').innerHTML = data;
+        })
+        .catch(err => console.log(err))
+    }
+
+    // 2.fetch请求本地JSON数据
+    document.getElementById('button2').addEventListener('click',getJson);
+    function getJson(){
+      fetch("posts.json")
+        .then((res) => res.json())
+        .then(data => {
+          console.log(data);
+          let output = '';
+          data.forEach((post) => {
+            output += `<li>${post.title}</li>`;
+          })
+          document.getElementById('output').innerHTML = output;
+        })
+        .catch(err => console.log(err));
+    }
+
+    // 3.fetch请求网络接口
+    document.getElementById('button3').addEventListener('click',getExternal);
+    function getExternal(){
+      // https://api.github.com/users
+      fetch("https://api.github.com/")
+        .then((res) => res.json())
+        .then(data => {
+          console.log(data);
+          let output = '';
+          data.forEach((user) => {
+            output += `<li>${user.login}</li>`;
+          })
+          document.getElementById('output').innerHTML = output;
+        })
+        .catch(err => console.log(err));
+    }
+  </script>
+</html>
