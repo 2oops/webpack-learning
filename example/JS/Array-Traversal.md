@@ -1,4 +1,4 @@
-数组遍历的方法：forEach map filter find every some reduce 
+**数组遍历的方法：forEach map filter find every some reduce **
 
 共同点：都不会改变原始数组
 
