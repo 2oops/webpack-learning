@@ -1,0 +1,17 @@
+<!-- document.domain + iframe -->
+<!-- 页面a.2oops.cn:3000/a.html获取页面b.2oops.cn:3000/b.html中a的值 -->
+
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    2oops/a
+     <iframe src="http://b.zf1.cn:3000/b.html" frameborder="1" onload="load()" id="frame"></iframe>
+     <script>
+      document.domain = 'zf1.cn'
+        function load() {
+          console.log(frame.contentWindow.a);
+        }
+    </script>
+  </body>
+</html>
