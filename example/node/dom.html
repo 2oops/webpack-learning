@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head><title>dom</title></head>
+  <body>
+    <button id="btn">DOM</button>
+
+    <div id="outer">
+      <div id="inner"> Inner</div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    // DOM0级事件
+    let el = document.getElementById('btn')
+    el.onclick = function() {
+      alert('2oops')
+    }
+
+    // DOM事件捕获具体流程
+    window.onclick = function() {
+      console.log('window');
+    };
+    document.onclick = function() {
+      console.log('document');
+    };
+    document.documentElement.onclick = function() {
+      console.log('html');
+    };
+    document.body.onclick = function() {
+      console.log('body');
+    }
+    outer.onclick = function(ev) {
+      console.log('outer');
+    };
+    inner.onclick = function(ev) {
+      console.log('inner');
+    };
+    // inner outer body html document window
+
+
+  </script>
+</html>
