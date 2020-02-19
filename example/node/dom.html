@@ -3,17 +3,49 @@
   <head><title>dom</title></head>
   <body>
     <button id="btn">DOM</button>
+    <button id="btn2">Btn2</button>
 
     <div id="outer">
       <div id="inner"> Inner</div>
     </div>
+
+    <ul id="list">
+      <li>item1</li>
+      <li>item2</li>
+      <li>item3</li>
+      <li>item4</li>
+      <li>item5</li>
+    </ul>
+
+    <a href="javascript:;">链接</a>
+
+    <a id="test" href="http://www.cnblogs.com">链接</a>
   </body>
   <script type="text/javascript">
+    // 阻止跳转，先触发click ，再触发默认事件
+    test.onclick = function(e) {
+      e = e || window.event
+      // return false
+      // 法三
+       e.preventDefault()
+    }
+
     // DOM0级事件
     let el = document.getElementById('btn')
     el.onclick = function() {
       alert('2oops')
     }
+
+    // DOM2级事件
+    let btn2 = document.getElementById('btn2')
+    btn2.addEventListener('click', callback, false) 
+    function callback(e) {
+      e = e || window.event
+      console.log((e.target || e.srcElement).innerHTML)
+      btn2.removeEventListener("click", callback)
+    }
+    // IE9以下不支持事件捕获，所以没有第三个参数，第一个参数前要加on
+
 
     // DOM事件捕获具体流程
     window.onclick = function() {
@@ -32,10 +64,19 @@
       console.log('outer');
     };
     inner.onclick = function(ev) {
+      ev.stopPropagation();
       console.log('inner');
     };
     // inner outer body html document window
 
-
+    // 事件代理
+    document.getElementById('list').addEventListener('click', (e) => {
+      // 兼容性处理
+      let event = e || window.event
+      let target = event.target || event.srcElement
+      if(target.nodeName.toLocaleLowerCase === 'li') {
+        console.log(`content is ${target.innerHTML}`)
+      }
+    })
   </script>
 </html>
