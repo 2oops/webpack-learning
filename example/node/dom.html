@@ -22,6 +22,13 @@
     <a id="test" href="http://www.cnblogs.com">链接</a>
   </body>
   <script type="text/javascript">
+
+    // Array.from的使用
+    let lis = document.getElementsByTagName('li')
+    console.log(lis) // HTMLCollection(5) [li, li, li, li, li]
+    console.log(lis instanceof Object) // true
+    Array.from(lis).forEach(item => console.log(item))
+
     // 阻止跳转，先触发click ，再触发默认事件
     test.onclick = function(e) {
       e = e || window.event
