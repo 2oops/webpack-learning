@@ -85,3 +85,108 @@
    ```
 
    注意：不可以使用yield命令，因此箭头函数不能用作 Generator 函数。
+
+5. rest 参数
+
+   ```javascript
+   function addNumber(...numbers) {
+     return numbers.reduce((sum, number) => {
+       return sum + number
+     }, 1)
+   }
+   addNumber(1,2,3,4) //11
+   // 结合箭头函数
+   const num = (...nums) => nums
+   num(1,2,3,4) // [1,2,3,4]
+   ```
+
+6. 展开运算符
+
+7. 解构赋值
+
+   ```javascript
+   // 使用圆括号包裹解构赋值语句
+   let node = {type:"Identifier",	name:"foo"},	
+   type = "Literal",name = 5;
+   ({type,name}= node);//	使用解构来分配不同的值 
+   console.log(type); //	"Identifier" 
+   console.log(name); //	"foo"
+   let { type, name, age = 20} = node // 使用默认值
+   
+   // 必须传值的解构参数
+   function setCookie(name, value, { secure, path, domain, expires} = {}) {}
+   setCookie('type', 'js')
+   ```
+
+8. 数组解构
+
+   ```javascript
+   let names = [1,2,3,4]
+   const {length} = names
+   console.log(length) // 4
+   // 数组转对象
+   const points = [
+     [4,5],
+     [10,1],
+     [0,40]
+   ];
+   let newPoints = points.map(([x,y]) => {
+     return {x, y}
+   })
+   console.log(newPoints)
+   ```
+
+9. 模版字符串
+
+10. Promise
+
+    ```javascript
+    function loadImg(src){
+       const promise=new Promise(function(resolve,reject){
+         var img=document.createElement（'img'）
+         img.onload=function(){
+            resolve(img)
+       }
+         img.onerror=function（）{
+            reject()
+       }
+        img.src=src
+     })
+      return promise//返回一个promise实例
+    }
+    var src="http://www.imooc.com/static/img/index/logo_new.png"
+    var result=loadImg(src)
+    result.then(function(img){
+        console.log(img.width)//resolved(成功)时候的回调函数
+    },function(){
+        console.log("failed")//rejected(失败)时候的回调函数
+    })
+    result.then(function(img){
+        console.log(img.height)
+    })
+    ```
+
+11. Iterator和for...of循环
+
+    ```javascript
+    // new Set 去重
+    let engines = new Set(["Gecko", "Trident", "Webkit", "Webkit"]);
+    
+    let str = 'abcd';
+    for(let item of str){
+       console.log(item); // a b c d
+    } 
+    ```
+
+    几种遍历方式的比较
+
+    | 方式     | 是否可以遍历Set/Map | 字符串 | 数组 | 对象       |
+    | -------- | ------------------- | ------ | ---- | ---------- |
+    | for...of | Y                   | Y      | Y    | 伪数组对象 |
+    | for...in | N                   | Y      | Y    | Y          |
+    | forEach  | Y                   | N      | Y    | N          |
+
+12. ES6 模块化
+
+    导出为匿名函数名时，导入可以自定义函数名，否则可以使用{functionName} 导入需要的函数
+
