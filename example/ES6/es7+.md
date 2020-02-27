@@ -63,3 +63,45 @@
 
 **ES9**
 
+1. **for await of**
+
+2. **Object Rest Spread**
+
+3. **Promise.prototype.finally()**
+
+   ```javascript
+   fetch('http://').then(res => {
+     
+   }).catch(err => {
+     
+   }).finally(() => { })
+   ```
+
+**ES10**
+
+1. **Array.prototype.flat**
+
+   按指定深度递归遍历数组，默认深度为1
+
+   ```javascript
+   const numbers2 = [1, 2, [3, 4, [5, 6]]]
+   console.log(numbers2.flat(2))// [1, 2, 3, 4, 5, 6]
+   ```
+
+2. **Array.prototype.flatMap**
+
+   结合map后实际上只能打平一层
+
+   ```javascript
+   let arr = [1, 2, 3]
+   console.log(arr.map(item => [item * 2]).flat()) // [2, 4, 6]
+   console.log(arr.flatMap(item => [item * 2])) // [2, 4, 6]
+   ```
+
+3. **Object.fromEntries()**
+4. **String.trimStart & String.trimEnd**
+5. **String.prototype.matchAll**
+6. **try…catch**
+7. **BigInt**
+8. **Function.prototype.toString()**
+
