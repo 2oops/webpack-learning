@@ -94,22 +94,42 @@
    }
    ```
 
+   链式调用
+
+   因为其每次返回的都是一个新的Promise实例，这就是then可链式调用的原因
+
+   如果then中返回的是一个结果的话会把这个结果传递到下一次then中的成功回调
+
+   ```javascript
+   Promise.resolve(1).then(res => {
+     console.log(res) // 1
+     return 2 // 包装成 Promise.resolve(2)
+   }).catch( err => 3)
+   .then(res => {
+     console.log(res) // 2
+})
+   ```
+
+   如果then中出现异常，会走下一个then的失败回调
+   
+   
+   
    为什么async/await更好？
-
+   
    1. 简洁，少then，避免嵌套
-
+   
    2. 中间值
-
+   
       ```javascript
-      const makeRequest = async() => {
+   const makeRequest = async() => {
         let value1 = await promise1()
         let value2 = await promise2(value1)
         return promise3(value1, value2)
       }
       ```
-
+   
    3. 条件语句
-
+   
       ```javascript
       const makeRequest = async() => {
       	let data = await getJSON()
@@ -121,6 +141,6 @@
         }
       }
       ```
-
+   
       
 
