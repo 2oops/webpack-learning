@@ -50,7 +50,7 @@
    console.log(f.constructor)//Array
    ```
 
-5. **最准确的常用方式：Object.prototype.toString.call()**
+5. 最准确的常用方式：*Object.prototype.toString.call()*
 
    首先获取Object原型上的toString方法，然后执行，让toString方法中的this指向第一个参数的值
 

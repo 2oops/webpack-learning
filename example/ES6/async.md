@@ -32,6 +32,24 @@
    console.log(it.next(13)) // 5 + 24 + 13
    ```
 
+   for...of
+
+   **由于 Generator 函数就是遍历器生成函数，因此可以把 Generator 赋值给对象的Symbol.iterator属性，从而使得该对象具有 Iterator 接口**。
+
+   ```javascript
+   let obj = { username: '2oops', age: 20}
+   obj[Symbol.iterator] = function *test() {
+   	yield 1;
+     yield 2;
+     yield 3;
+   }
+   for(let i in obj) {
+     console.log(i)
+   }
+   ```
+
+   
+
 7. Async/await
 
    ```javascript
