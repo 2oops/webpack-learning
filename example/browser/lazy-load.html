@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>lazy-load</title>
+    <style>
+      .image-item {
+        display: block;
+        height: 200px; 
+        /* 一定要设置高度 */
+        margin-bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="" class="image-item" lazyload="true"  data-original="http://pic.netbian.com/uploads/allimg/170725/103840-150095032034c0.jpg"/>
+    <img src="" class="image-item" lazyload="true"  data-original="http://pic.netbian.com/uploads/allimg/170725/103840-150095032034c0.jpg"/>
+    <img src="" class="image-item" lazyload="true"  data-original="http://pic.netbian.com/uploads/allimg/170725/103840-150095032034c0.jpg"/>
+    <img src="" class="image-item" lazyload="true"  data-original="http://pic.netbian.com/uploads/allimg/170725/103840-150095032034c0.jpg"/>
+    <img src="" class="image-item" lazyload="true"  data-original="http://pic.netbian.com/uploads/allimg/170725/103840-150095032034c0.jpg"/>
+    <img src="" class="image-item" lazyload="true"  data-original="http://pic.netbian.com/uploads/allimg/191022/000653-1571674013ac2d.jpg"/>
+    <img src="" class="image-item" lazyload="true"  data-original="http://pic.netbian.com/uploads/allimg/191022/000653-1571674013ac2d.jpg"/>
+    <img src="" class="image-item" lazyload="true"  data-original="http://pic.netbian.com/uploads/allimg/191022/000653-1571674013ac2d.jpg"/>
+
+    <script type="text/javascript">
+      let viewHeight = document.documentElement.clientHeight
+      function lazyLoad() {
+        let eles = document.querySelectorAll('img[data-original][lazyload]')
+        Array.prototype.forEach.call(eles, (item, index) => {
+          let rect
+          if(item.dataset.original === '') return 
+          // 用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置
+          rect = item.getBoundingClientRect()
+          console.log(rect.bottom, rect.top, viewHeight)
+
+          if(rect.bottom >= 0 && rect.top < viewHeight) {
+            !function() {
+              let img = new Image()
+              img.src = item.dataset.original
+              img.onload = () => {
+                item.src = img.src
+              }
+              item.removeAttribute('data-original')
+              item.removeAttribute('lazyload')
+            }()
+          }
+        })
+      }
+      lazyLoad() // 首屏加载
+      document.addEventListener('scroll', lazyLoad)
+    </script>
+ </body>
+</html>
