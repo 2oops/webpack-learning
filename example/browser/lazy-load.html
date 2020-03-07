@@ -12,10 +12,33 @@
         /* 一定要设置高度 */
         margin-bottom: 50px;
       }
+      iframe {
+        width: 1440px;
+        height: 900px;
+        position: absolute;
+        top: -0px;
+        left: -0px;
+        z-index: 2;
+        -moz-opacity: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+      }
+      button {
+        position: absolute;
+        top: 270px;
+        left: 1150px;
+        z-index: 1;
+        width: 90px;
+        height:40px;
+      }
     </style>
   </head>
   <body>
     <button id="btn">函数防抖</button>
+
+    <button>点击脱衣</button>
+    <img src="http://pic1.win4000.com/wallpaper/2018-03-19/5aaf2bf0122d2.jpg">
+    <iframe src="http://i.youku.com/u/UMjA0NTg4Njcy" scrolling="no"></iframe>
 
     <img src="" class="image-item" lazyload="true"  data-original="http://pic.netbian.com/uploads/allimg/170725/103840-150095032034c0.jpg"/>
     <img src="" class="image-item" lazyload="true"  data-original="http://pic.netbian.com/uploads/allimg/170725/103840-150095032034c0.jpg"/>
@@ -86,5 +109,6 @@
       let ele = document.getElementById('btn')
       ele.onclick = debounce(() => {console.log(`debounce${Date.now()}`)}, 1000)
     </script>
+
  </body>
 </html>
