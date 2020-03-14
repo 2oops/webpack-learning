@@ -1,39 +1,52 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>粘连布局</title>
+    <title>sticky</title>
     <style type="text/css">
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    html,body {
-      height: 100%;
-    }
-    .wrapper {
-      min-height: 100%;
-      background-color: #aaa;;
-      overflow: hidden;
-    }
-    .wrapper .main {
-      padding-bottom: 50px;
-    }
-    .footer {
-      height: 50px;
-      line-height: 50px;
-      background-color: rgb(85, 85, 85);
-      text-align: center;
-      margin-top: -50px;
-    }
+      .header {
+        height: 50px;
+        background: #aaa;
+      }
+      .nav {
+        height: 100px;
+        background: #bbb;
+        position: sticky;
+        top: 0;
+      }
+      .main {
+        height: 1200px;
+        background-color: rgb(124, 117, 117);
+      }
+      .main .title {
+        background-color: tomato;
+        height: 28px;
+        top: 100px;
+        position: sticky;
+      }
+      .main .content {
+        height: 200px;
+        background-color: wheat;
+      }
+      .footer {
+        height: 100px;
+        position: sticky;
+        bottom: 0;
+        background-color: slategray;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="main">
-        当main的内容超过屏幕时，footer跟在内容后面
-        不超过屏幕时，footer在屏幕底部
-      </div>
+    <div class="header">header</div>
+    <div class="nav">navigation</div>
+    <div class="main">
+      <div class="title">标题1</div>
+      <div class="content">内容1</div>
+      <div class="title">标题2</div>
+      <div class="content">内容2</div>
+      <div class="title">标题3</div>
+      <div class="content">内容3</div>
     </div>
-    <div class="footer">beianhao</div>
+    <div class="footer">footer</div>
   </body>
 </html>
