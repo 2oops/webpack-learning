@@ -21,3 +21,15 @@
    如果在Object原型中都没有找到，则返回undefined
 
    可以使用对象的`hasOwnProperty()`来检查对象自身中是否含有该属性；使用`in`检查对象中是否含有某个属性时，如果对象中没有但是原型中有，也会返回true。
+
+   ```javascript
+   let obj = {
+      name: "2oops"
+   }
+   let objProto = Object.create(obj)
+   objProto.age = 20
+   for(let key in objProto) {
+      console.log(key); // age name 
+   }
+   obj.isPrototypeOf(objProto) // true
+   ```
