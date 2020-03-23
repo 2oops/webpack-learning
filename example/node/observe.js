@@ -87,3 +87,132 @@ data.arr.push(4)
 // 1.响应的数据较大时，递归遍历性能存在问题
 // 2.新增或删除属性无法监听
 // 3. 数据响应式需额外实现，需要为每个属性设置setter,getter
+
+
+
+//**********/
+// vue3原理:使用Proxy对对象进行拦截
+function isObject(obj) {
+  return typeof obj === "object" || obj === null
+}
+
+// 缓存
+const toProxy = new WeakMap() // 形如 obj: observed
+const toRaw = new WeakMap() // 形如: observed: obj
+
+const activeReactiveEffectStack = []
+function effect(fn) {
+  // 1.异常处理
+  // 2.执行函数
+  // 3. 放到数组里面
+  const rxEffect = function(...arguments) {
+    try {
+      activeReactiveEffectStack.push(rxEffect)
+      return fn(...arguments) // 默认执行函数触发依赖收集
+    } finally {
+      activeReactiveEffectStack.pop()
+    }
+  }
+  rxEffect() // 默认立即执行
+  return rxEffect
+}
+
+// {target:{key: []}}
+// WeakMap Map Set
+let targetsMap = new WeakMap() // 使用WeakMap()避免内存泄漏
+function track(target, key) {
+  const effect = activeReactiveEffectStack[activeReactiveEffectStack.length - 1]
+  if(effect) {
+    let depsMap = targetsMap.get(target)
+    if(!depsMap) {
+      // 首次访问target
+      depsMap = new Map()
+      targetsMap.set(target, depsMap)
+    }
+
+    // 存放key
+    let deps = depsMap.get(key)
+    if(!deps) {
+      deps = new Set()
+      depsMap.set(key, deps)
+    }
+    if(!deps.has(effect)) {
+      deps.add(effect)
+    }
+  }
+}
+
+function reactive(obj) {
+  if(!isObject(obj)) {
+    return obj
+  }
+
+  // 查找缓存
+  if(toProxy.has(obj)) {
+    return toProxy.get(obj)
+  }
+  // 传入obj就是代理对象，不用重复代理
+  if(toRaw.has(obj)) {
+    return obj
+  }
+
+  const observed = new Proxy(obj, {
+    get(target, key, receiver) {
+      // 访问
+      const res = Reflect.get(target, key, receiver)
+      console.log(`get ${key}:${res}`);
+      // 依赖收集
+      track(target, key)
+      return isObject(res) ? reactive(res) : res
+    },
+    set(target, key, value, receiver) {
+      // 新增和修改
+      const res = Reflect.set(target, key, value, receiver)
+      console.log(`set ${key}:${res}`);
+      
+      // return res
+      return isObject(res) ? reactive(res) : res
+    },
+    deleteProperty(target, key) {
+      // 替代$delete 删除
+      const res = Reflect.deleteProperty(target, key)
+      console.log(`delete ${key}: res ${res}`);
+      
+      return res
+    }
+  })
+
+  // 缓存
+  toProxy.set(obj, observed)
+  toRaw.set(observed, obj)
+
+  return observed
+}
+
+let obj = { 
+  foo: '2oops',
+  age: 20,
+  bar: {
+    a: 1
+  }
+}
+const react = reactive(obj)
+// react.foo = "hello" // set修改
+// react.name = "biubiu" // set新增
+// react.age  // get
+// delete react.foo // delete foo: res true
+// // 嵌套对象
+// react.bar.a = 2 // get bar: [object object] / set a:true
+
+// 避免重复代理
+// console.log(reactive(obj) === react);
+
+// 依赖收集
+// 1. 设置中间对象数组保存当前响应函数
+// 2. 如何保存key和fn之间的关系
+// {target: {key: [effect1, effect2, ... ]}}
+
+effect(() => {
+  console.log("effect change", react.foo) // 2oops
+})
+react.foo = "uuu" // set foo:true
