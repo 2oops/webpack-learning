@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      /* 双飞翼布局 
+        两端固定，中间自适应
+        兼容性好，兼容所有主流浏览器
+        关键点在于两个左右两侧的margin-left: 100%和-200px
+      */
+      .container {
+        width: 100%;
+        overflow: hidden;
+      }
+      .common {
+        float: left;
+        height: 300px;
+      }
+      .left {
+        width: 300px;
+        background: #aaa;
+        margin-left: -100%;
+      }
+      .right {
+        width: 200px;
+        background: #bbb;
+        margin-left: -200px;
+      }
+      .center {
+        width: 100%;
+        background: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="common center"></div>
+      <div class="common left"></div>
+      <div class="common right"></div>
+    </div>
+  </body>
+</html>
