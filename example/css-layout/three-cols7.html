@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>layout</title>
+  <style type="text/css">
+    /* 左中固定 右侧自适应 
+    关键在于右侧内容往左撑，外层补回*/
+    .container {
+      width: 100%;
+      overflow: hidden;
+    }
+    .left, .center {
+      position: relative;
+      float: left;
+      width: 200px;
+      height: 300px;
+    }
+    .left {
+      background-color: #bbb;
+    }
+    .center {
+      background-color: #ccc;
+    }
+    .right {
+      width: 100%;
+      float: right;
+      height: 150px;
+      background-color: #aaa;
+      margin-left: -400px;
+    }
+    .content {
+      margin-left: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">left固定</div>
+    <div class="left">center固定</div>
+    <div class="right">
+      <div class="content">
+        右侧自适应
+      </div>
+    </div>
+  </div>
+</body>
+</html>

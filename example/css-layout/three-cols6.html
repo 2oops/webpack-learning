@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>layout</title>
+  <style type="text/css">
+    /* 左自适应，中右固定 
+    关键在于自适应内层div的margin-right给中右挪出空间后
+    外层再给补回
+    左侧内容往右撑，外层补回*/
+    .contianer {
+      overflow: hidden;
+    }
+    .left {
+      width: 100%;
+      float: left;
+      background-color: #aaa;
+      margin-right: -400px;
+    }
+    .content {
+      height: 150px;
+      margin-right: 400px;
+    }
+    .center, .right {
+      width: 200px;
+      height: 200px;
+      float: right;
+    }
+    .center {
+      background-color: #bbb;
+    }
+    .right {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="contianer">
+    <div class="left">
+      <div class="content">左自适应这里一定要有东西</div>
+    </div>
+    <div class="center">center fixed</div>
+    <div class="right">right fixed</div>
+  </div>
+</body>
+</html>

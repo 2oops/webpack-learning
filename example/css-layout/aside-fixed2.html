@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>layout</title>
+  <style type="text/css">
+    /* 两栏布局 左自适应 右固定/ 两栏固定 */
+    .container {
+      width: 100%;
+      overflow: hidden;
+    }
+    .left {
+      width: 100%;
+      /* width: 300px; */
+      float: left;
+      height: 200px;
+      background-color: #bbb;
+    }
+    .right {
+      width: 200px;
+      float: left;
+      /* float: right; */
+      height: 200px;
+      background-color: #aaa;
+      margin-left: -200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">aside</div>
+    <div class="right">content</div>
+  </div>
+</body>
+</html>
