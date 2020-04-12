@@ -9,13 +9,13 @@ const Webpack = require('webpack')
 
 let indexCss = new ExtractTextPlugin('index.css')
 
-const firstPlugin = require('./webpack-firstPlugin')
+// const firstPlugin = require('./webpack-firstPlugin')
 
 module.exports = {
   mode: 'development',
   entry: {
-    // main: path.resolve( __dirname, '../src/main.js'),
-    layout: path.resolve( __dirname, '../src/layout.js')
+    main: path.resolve( __dirname, '../src/main.js'),
+    // layout: path.resolve( __dirname, '../src/layout.js')
   },
   output: {
     filename: '[name].[hash:8].js',
@@ -118,12 +118,12 @@ module.exports = {
     extensions: ['*', '.js', '.json', '.vue']
   },
   plugins: [
-    new firstPlugin(),
-    // new HtmlWebpackPlugin({
-    //   template: path.resolve(__dirname, "../public/index.html"),
-    //   filename: 'index.html',
-    //   chunks: ['main'],
-    // }),
+    // new firstPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "../public/index.html"),
+      filename: 'index.html',
+      chunks: ['main'],
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../public/layout.html'),
       filename: 'layout.html',

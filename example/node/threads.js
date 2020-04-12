@@ -6,7 +6,7 @@ HTTP.createServer((req, res) => {
   res.end('hello 2oops')
 }).listen(8000)
 
-console.log("process.id", process.pid)
+// console.log("process.id", process.pid)
 // console.log('process env url', process.env)
 
 HTTP.createServer((req, res) => {
