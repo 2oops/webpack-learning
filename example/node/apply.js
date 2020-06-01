@@ -55,3 +55,46 @@ function foo2(a, b) {
 let bind1 = foo2.bind(null, 1) // 这里是传递的a
 let new1 = new bind1(2) // 这里是传递的b
 console.log(new1.val) // 3
+
+function foo3() {
+  console.log('foo3')
+}
+let myfoo = foo3
+let obj4 = {
+  foo3: foo3
+}
+obj4.foo3()
+foo3()
+myfoo()
+
+let arr2 = [1,2,3]
+let obj5 = {
+  myarr: arr2 // 引用了数组，数组数据更改两者引用会跟着改变，反之亦然
+}
+console.log(obj5.myarr)
+arr2[4] = '5'
+arr2.baz = 'baz' // 添加属性，不会改变数组长度
+console.log(arr2)
+console.log(arr2.length) // 5
+console.log(obj5.myarr)
+obj5.myarr.push(666)
+console.log(arr2.length) // 6
+
+let obj6 = {
+  foo: undefined
+}
+console.error(obj6.foo)
+console.log(obj6.b)
+
+function Foo() {
+  console.log("Foo")
+}
+Foo.prototype.getName = function() {
+  console.log("foo.prototype")
+}
+let fooooo = new Foo()
+if(fooooo instanceof Foo) {
+  fooooo.getName()
+} else {
+  console.log('fooooo is not instanceof Foo')
+}
