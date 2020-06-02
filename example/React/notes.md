@@ -104,3 +104,7 @@ React
 6.  const和Object.freeze()的区别
    - const无法重新分配变量，但是可以改变对象本身
    - Object.freeze()只是冻结了表层，深层的具有嵌套属性的对象不会被冻结
+7. react的sate写在constructor里面和外面的区别
+   - babel编译后的结果稍有差别[在线babel编译](https://www.babeljs.cn/repl/ )
+   - 定义在外面`_defineProperty(_assertThisInitialized(_this), "state", {count: 0})`和`this.state = {count: 0}`的区别
+   - 但是转义后的最终结果都是一样的，state属性都是挂载载实例上
